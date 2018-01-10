@@ -22,7 +22,7 @@ setup(
     ],
     entry_points = {
         'd3m.primitives' : [
-            'd3metafeatureextraction = d3metafeatureextraction:D3MetafeatureExtraction',
+            'd3metafeatureextraction = d3metafeatureextraction.d3metafeatureextraction:D3MetafeatureExtraction',
         ],
     },
     download_url = "https://github.com/byu-dml/d3metafeatureextraction/archive/{}.tar.gz".format(__version__)
