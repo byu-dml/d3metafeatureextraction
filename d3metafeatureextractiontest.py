@@ -1,4 +1,4 @@
-from d3metafeatureextraction.d3metafeatureextraction import D3MetafeatureExtraction
+from d3metafeatureextraction import D3MetafeatureExtraction
 
 from d3m_metadata.container.pandas import DataFrame
 from arff2pandas import a2p

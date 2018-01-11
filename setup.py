@@ -1,6 +1,5 @@
 from setuptools import setup, find_packages
-
-__version__ = "0.1.5"
+from d3metafeatureextraction import __version__
 
 setup(
     name="d3metafeatureextraction",
@@ -22,7 +21,7 @@ setup(
     ],
     entry_points = {
         'd3m.primitives' : [
-            'd3metafeatureextraction = d3metafeatureextraction.d3metafeatureextraction:D3MetafeatureExtraction',
+            'd3metafeatureextraction = d3metafeatureextraction:D3MetafeatureExtraction',
         ],
     },
     download_url = "https://github.com/byu-dml/d3metafeatureextraction/archive/{}.tar.gz".format(__version__)

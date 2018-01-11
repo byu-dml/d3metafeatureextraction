@@ -11,6 +11,8 @@ from metalearn.metafeatures.information_theoretic_metafeatures import Informatio
 import pandas as pd
 import numpy as np
 
+__version__ = "0.1.6"
+
 Inputs = d3m_metadata.container.pandas.DataFrame
 Outputs = d3m_metadata.container.pandas.DataFrame
 class Hyperparams(d3m_metadata.hyperparams.Hyperparams):
@@ -28,8 +30,8 @@ class D3MetafeatureExtraction(FeaturizationTransformerPrimitiveBase[Inputs, Outp
             "name": "byu-dml",
             "contact": "https://github.com/byu-dml"
         },
-        "python_path": "d3m.primitives.d3metafeatureextraction.d3metafeatureextraction",
-        "version": "v0.2.0",
+        "python_path": "d3m.primitives.d3metafeatureextraction",
+        "version": "v{}".format(__version__),
         "installation": [
             {
                 "type": "PIP",
