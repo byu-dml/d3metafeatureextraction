@@ -11,7 +11,7 @@ from metalearn.metafeatures.information_theoretic_metafeatures import Informatio
 import pandas as pd
 import numpy as np
 
-__version__ = "0.1.7"
+__version__ = "0.1.8"
 
 Inputs = d3m_metadata.container.pandas.DataFrame
 Outputs = d3m_metadata.container.pandas.DataFrame
@@ -30,7 +30,7 @@ class D3MetafeatureExtraction(FeaturizationTransformerPrimitiveBase[Inputs, Outp
             "name": "byu-dml",
             "contact": "https://github.com/byu-dml"
         },
-        "python_path": "d3m.primitives.d3metafeatureextraction",
+        "python_path": "d3m.primitives.d3metafeatureextraction.D3MetafeatureExtraction",
         "version": "v{}".format(__version__),
         "installation": [
             {
@@ -42,6 +42,11 @@ class D3MetafeatureExtraction(FeaturizationTransformerPrimitiveBase[Inputs, Outp
         "primitive_family": "METAFEATURE_EXTRACTION",
         "algorithm_types": [
             "DATA_PROFILING",
+            "CANONICAL_CORRELATION_ANALYSIS",
+            "INFORMATION_ENTROPY",
+            "MUTUAL_INFORMATION",
+            "SIGNAL_TO_NOISE_RATIO",
+            "STATISTICAL_MOMENT_ANALYSIS"
         ],
         "id": "28d12214-8cb0-4ac0-8946-d31fcbcd4142",
         "name": "Dataset Metafeature Extraction"
