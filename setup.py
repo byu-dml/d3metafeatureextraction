@@ -9,7 +9,7 @@ setup(
     author = "Roland Laboulaye, Brandon Schoenfeld",
     author_email = "rlaboulaye@gmail.com, bjschoenfeld@gmail.com",
     url = "https://github.com/byu-dml/d3metafeatureextraction",
-    keywords = ["metalearning", "metafeature", "machine learning", "metalearn"],
+    keywords = ["metalearning", "metafeature", "machine learning", "metalearn", "d3m_primitive"],
     install_requires = [
         "metalearn==0.2.0",
         "numpy",
@@ -21,7 +21,7 @@ setup(
     ],
     entry_points = {
         'd3m.primitives' : [
-            'd3metafeatureextraction = d3metafeatureextraction:D3MetafeatureExtraction',
+            'd3metafeatureextraction.D3MetafeatureExtraction = d3metafeatureextraction:D3MetafeatureExtraction',
         ],
     },
     download_url = "https://github.com/byu-dml/d3metafeatureextraction/archive/{}.tar.gz".format(__version__)
