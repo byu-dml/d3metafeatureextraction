@@ -11,7 +11,7 @@ from metalearn.metafeatures.information_theoretic_metafeatures import Informatio
 import pandas as pd
 import numpy as np
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 
 Inputs = d3m_metadata.container.pandas.DataFrame
 Outputs = d3m_metadata.container.pandas.DataFrame
