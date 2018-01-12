@@ -11,7 +11,7 @@ from metalearn.metafeatures.information_theoretic_metafeatures import Informatio
 import pandas as pd
 import numpy as np
 
-__version__ = "0.1.9"
+__version__ = "0.1.10"
 
 Inputs = d3m_metadata.container.pandas.DataFrame
 Outputs = d3m_metadata.container.pandas.DataFrame
@@ -35,8 +35,8 @@ class D3MetafeatureExtraction(FeaturizationTransformerPrimitiveBase[Inputs, Outp
         "installation": [
             {
                 "type": "PIP",
-                "package": "metalearn",
-                "version": "0.2.0"
+                "package": "d3metafeatureextraction",
+                "version": str(__version__)
             }
         ],
         "primitive_family": "METAFEATURE_EXTRACTION",
