@@ -11,7 +11,7 @@ from metalearn.metafeatures.information_theoretic_metafeatures import Informatio
 import pandas as pd
 import numpy as np
 
-__version__ = "0.1.8"
+__version__ = "0.1.9"
 
 Inputs = d3m_metadata.container.pandas.DataFrame
 Outputs = d3m_metadata.container.pandas.DataFrame
@@ -24,7 +24,7 @@ class D3MetafeatureExtraction(FeaturizationTransformerPrimitiveBase[Inputs, Outp
     # This should contain only metadata which cannot be automatically determined from the code.
     metadata = d3m_metadata.metadata.PrimitiveMetadata({
         "primitive_code": {
-            "interfaces_version": "2017.12.27"
+            "interfaces_version": "2018.1.5"
         },
         "source": {
             "name": "byu-dml",
