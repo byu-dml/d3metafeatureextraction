@@ -7,11 +7,11 @@ from primitive_interfaces.featurization import FeaturizationTransformerPrimitive
 from metalearn.metafeatures.simple_metafeatures import SimpleMetafeatures
 from metalearn.metafeatures.statistical_metafeatures import StatisticalMetafeatures
 from metalearn.metafeatures.information_theoretic_metafeatures import InformationTheoreticMetafeatures
+from metalearn.metafeatures.landmarking_metafeatures import LandmarkingMetafeatures
 
 import pandas as pd
-import numpy as np
 
-__version__ = "0.1.10"
+__version__ = "0.2.0"
 
 Inputs = d3m_metadata.container.pandas.DataFrame
 Outputs = d3m_metadata.container.pandas.DataFrame
@@ -24,7 +24,7 @@ class D3MetafeatureExtraction(FeaturizationTransformerPrimitiveBase[Inputs, Outp
     # This should contain only metadata which cannot be automatically determined from the code.
     metadata = d3m_metadata.metadata.PrimitiveMetadata({
         "primitive_code": {
-            "interfaces_version": "2018.1.5"
+            "interfaces_version": "2018.1.26"
         },
         "source": {
             "name": "byu-dml",
@@ -106,29 +106,20 @@ class D3MetafeatureExtraction(FeaturizationTransformerPrimitiveBase[Inputs, Outp
             The outputs of shape [num_inputs, ...] wrapped inside ``CallResult``.
         """
         if not isinstance(inputs, d3m_metadata.container.pandas.DataFrame):
-            raise ValueError("inputs must be and instance of 'd3m_metadata.container.pandas.DataFrame'")
+            raise ValueError("inputs must be an instance of 'd3m_metadata.container.pandas.DataFrame'")
         if "target" not in inputs.columns:
             raise ValueError("inputs must contain single-class classification targets in a column labeled 'target'")
 
-        X_inputs = inputs.drop("target", axis=1)
-        X = X_inputs.as_matrix()
-        Y = inputs["target"].as_matrix()
-        attributes = [(col, str(inputs.dtypes[col])) for col in X_inputs.columns]
-        attributes.append(("class", list(np.unique(Y))))
+        simple_metafeatures = SimpleMetafeatures().compute(inputs)
+        statistical_metafeatures = StatisticalMetafeatures().compute(inputs)
+        information_thoeretic_metafeatures = InformationTheoreticMetafeatures().compute(inputs)
+        landmarking_metafeatures = LandmarkingMetafeatures().compute(inputs)
 
-        metafeatures = {}
+        metafeatures_df = d3m_metadata.container.pandas.DataFrame(pd.concat([
+            simple_metafeatures,
+            statistical_metafeatures,
+            information_thoeretic_metafeatures,
+            landmarking_metafeatures
+        ], axis=1))
 
-        simple_metafeatures = SimpleMetafeatures().compute(X, Y, attributes)
-        for key, value in simple_metafeatures.items():
-            metafeatures[key] = value
-
-        satistical_metafeatures = StatisticalMetafeatures().compute(X, Y, attributes)
-        for key, value in satistical_metafeatures.items():
-            metafeatures[key] = value
-
-        information_thoeretic_metafeatures = InformationTheoreticMetafeatures().compute(X, Y, attributes)
-        for key, value in information_thoeretic_metafeatures.items():
-            metafeatures[key] = value
-
-        metafeatures = d3m_metadata.container.pandas.DataFrame(pd.Series(metafeatures).to_frame())
-        return CallResult(metafeatures)
+        return CallResult(metafeatures_df)

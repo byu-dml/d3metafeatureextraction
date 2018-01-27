@@ -1,13 +1,13 @@
-from d3metafeatureextraction import D3MetafeatureExtraction
+import pandas as pd
 
 from d3m_metadata.container.pandas import DataFrame
-from arff2pandas import a2p
 
+from d3metafeatureextraction import D3MetafeatureExtraction
 
 if __name__ == '__main__':
-    infile_path = "data/iris.arff"
-    with open(infile_path, "r") as f:
-        df = DataFrame(a2p.load(f)).rename(columns={"class@{Iris-setosa,Iris-versicolor,Iris-virginica}": "target"})
-
+    infile_path = "data/38_sick_train_data.csv"
+    df = DataFrame(pd.read_csv(infile_path))
+    df = df.rename(columns={"Class": "target"})
+    df.drop("d3mIndex", axis=1, inplace=True)
     metafeatures = D3MetafeatureExtraction(hyperparams=None).produce(inputs=df).value
     print(metafeatures)

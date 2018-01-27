@@ -11,7 +11,7 @@ setup(
     url = "https://github.com/byu-dml/d3metafeatureextraction",
     keywords = ["metalearning", "metafeature", "machine learning", "metalearn", "d3m_primitive"],
     install_requires = [
-        "metalearn==0.2.0",
+        "metalearn==0.3.0",
         "numpy",
         "pandas"
     ],
